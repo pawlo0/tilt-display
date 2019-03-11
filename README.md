@@ -31,6 +31,8 @@ Once rebooted, install some required bluetooth and python software
  
 `sudo apt-get install bluez python-bluez python-requests python-pygame python-rpi.gpio git build-essential python-dev python-pip`
 
+Has to use with `--fix-missing` due to being unable to fetch some archives. But running it again with this option fixed the problem.
+
 ## step 6: Check That the Pi Can See the Tilt
 Drop your Tilt Hydrometer in a glass of water and type the following command in a terminal.
 
