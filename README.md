@@ -14,6 +14,8 @@ Boot (power on) your Raspberry Pi, in a new terminal window, update Raspbian:
 
 `sudo apt-get upgrade`
 
+Had some errors during the upgrade, due to being unable to fetch some archives. But running it again with `--fix-missing` option fixed the problem. I.e. `sudo apt-get upgrade --fix-missing`.
+
 ## step 3: Enable SPI
 Run the configuration tool by entering the following command and hitting enter:
 
@@ -29,9 +31,7 @@ Select Yes to enable the SPI interface and hit enter. Exit the config tool by se
 ## step 5: Install essentials
 Once rebooted, install some required bluetooth and python software
  
-`sudo apt-get install bluez python-bluez python-requests python-pygame python-rpi.gpio git build-essential python-dev python-pip`
-
-Has to use with `--fix-missing` due to being unable to fetch some archives. But running it again with this option fixed the problem.
+`sudo apt-get install git build-essential python-bluez python-requests python-pygame python-rpi.gpio python-dev python-pip`
 
 ## step 6: Check That the Pi Can See the Tilt
 Drop your Tilt Hydrometer in a glass of water and type the following command in a terminal.
