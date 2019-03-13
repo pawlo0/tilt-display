@@ -33,11 +33,21 @@ Once rebooted, install some required bluetooth and python software
  
 `sudo apt-get install git build-essential python-bluez python-requests python-pygame python-rpi.gpio python-dev python-pip`
 
-## step 6: Check That the Pi Can See the Tilt
-Drop your Tilt Hydrometer in a glass of water and type the following command in a terminal.
+# step 7: Install Zeroseg
+Enter `cd~` in the terminal and hit enter, to ensure you're in the home directory
 
-`sudo hcitool lescan`
+Next clone the Zeroseg code library:
 
-When you see the tilt address and name pop up hit ctrl + c to stop the scan. The 12 digit hexadecimal number is the bluetooth address of the tilt. If it does not appear, check your Tilt's battery status, if it is actually turning on (LED flashs when tilt is moved from vertical position to angled position). Try checking with an Android or IOS device. If the Tilt is OK, then there must be something wrong with the RPi. Double check all the required bluetooth software is installed.
+`git clone https://github.com/AverageMaker/ZeroSeg.git`
 
-# step 7: Set Up the Python Code
+Enter your new ZeroSeg directory (case sensitive)
+
+`cd ZeroSeg`
+
+Run the following command to install the Zeroseg library:
+
+`sudo python setup.py install`
+
+To complete the SPI setup, whilst still in the ZeroSeg directory, run the following command:
+
+`sudo pip install spidev`
