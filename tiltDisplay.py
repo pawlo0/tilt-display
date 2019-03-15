@@ -65,14 +65,22 @@ def main():
 		data = getdata()
 		print "SG/Concentration: ",data["SG"]," Temperature: ",(data["Temp"]-32)*5/9,"C"
 		print "at ", str(data["Time"])
-		gravity = data["SG"] * 1000
-		unit = int(gravity / 1000)
-		decimal = 0 if gravity % 1000 < 100 else int((gravity%1000)/100)
-		centesimal = 0 if gravity % 1000 < 10 else int((gravity%1000-decimal*10)/10)
+		tempList = list((data["Temp"]-32)*5/9)
+		isSingleDigit = True if tempList.index(".") == 1 else False
+		tempDigits = tempList[:tempList.index(".")] + tempList[tempList.index(".")+1:]
+		gravity = list(data["SG"])
 		
-		device.letter(1, 4, unit, True)
-		device.letter(1, 3, decimal)
-		device.letter(1, 2, centesimal)
+		# To show temperature
+		device.letter(1, 8, tempDigits[0], isSingleDigit)
+		device.letter(1, 7, tempDigits[1], not isSingleDigit)
+		device.letter(1, 6, tempDigits[2])
+		device.letter(1, 5, "C")
+		
+		# To show gravity
+		device.letter(1, 4, gravity[0], True)
+		device.letter(1, 3, gravity[2])
+		device.letter(1, 2, gravity[3])
+		device.letter(1, 1, gravity[4])
 
 if __name__ == "__main__": #dont run this as a module
 	main()
