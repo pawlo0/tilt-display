@@ -65,22 +65,30 @@ def main():
 		data = getdata()
 		print "SG/Concentration: ",data["SG"]," Temperature: ",(data["Temp"]-32)*5/9,"C"
 		print "at ", str(data["Time"])
-		tempList = list((data["Temp"]-32)*5/9)
+		tempList = list(str((data["Temp"]-32)*5/9))
 		isSingleDigit = True if tempList.index(".") == 1 else False
 		tempDigits = tempList[:tempList.index(".")] + tempList[tempList.index(".")+1:]
-		gravity = list(data["SG"])
-		
+		gravity = list(str(data["SG"]))
+
+		# Deals with particular case of gravity equals 1.0
+		if gravity == "1.0":
+			gravity[3] = "0"
+			gravity[4] = "0"
+
 		# To show temperature
 		device.letter(1, 8, tempDigits[0], isSingleDigit)
 		device.letter(1, 7, tempDigits[1], not isSingleDigit)
 		device.letter(1, 6, tempDigits[2])
 		device.letter(1, 5, "C")
-		
+
 		# To show gravity
 		device.letter(1, 4, gravity[0], True)
 		device.letter(1, 3, gravity[2])
 		device.letter(1, 2, gravity[3])
 		device.letter(1, 1, gravity[4])
+
+		# Delay cycle so it wont fetch all the time
+		time.sleep(5)
 
 if __name__ == "__main__": #dont run this as a module
 	main()
