@@ -63,8 +63,8 @@ def main():
 
 	while True:
 		data = getdata()
-		print "SG/Concentration: ",data["SG"]," Temperature: ",(data["Temp"]-32)*5/9,"C"
-		print "at ", str(data["Time"])
+		#print "SG/Concentration: ",data["SG"]," Temperature: ",(data["Temp"]-32)*5/9,"C"
+		#print "at ", str(data["Time"])
 		tempList = list(str((data["Temp"]-32)*5/9))
 		isSingleDigit = True if tempList.index(".") == 1 else False
 		tempDigits = tempList[:tempList.index(".")] + tempList[tempList.index(".")+1:]
@@ -88,7 +88,7 @@ def main():
 		device.letter(1, 1, gravity[4])
 
 		# Delay cycle so it wont fetch all the time
-		time.sleep(5)
+		time.sleep(900)
 
 if __name__ == "__main__": #dont run this as a module
 	main()
